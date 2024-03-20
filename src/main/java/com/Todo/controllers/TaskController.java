@@ -15,6 +15,13 @@ public class TaskController {
     @Autowired
     private TaskService taskService;
 
+    @GetMapping(value = "/{id}")
+    public ResponseEntity<TaskDTO> findById(@PathVariable Long id){
+        TaskDTO taskDTO = taskService.findById(id);
+        return ResponseEntity.ok(taskDTO);
+    }
+
+
     @GetMapping()
     public ResponseEntity<Page<TaskDTO>> findAll (Pageable pageable){
         Page<TaskDTO> list = taskService.findAll(pageable);
