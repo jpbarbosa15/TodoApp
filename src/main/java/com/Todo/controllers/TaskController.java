@@ -34,4 +34,16 @@ public class TaskController {
         return ResponseEntity.ok().body(taskDTO);
     }
 
+    @PutMapping(value = "/{id}")
+    public ResponseEntity<TaskDTO> update(@PathVariable Long id, @RequestBody TaskDTO taskDTO){
+        taskDTO = taskService.update(id, taskDTO);
+        return ResponseEntity.ok(taskDTO);
+    }
+
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        taskService.delete(id);
+        return ResponseEntity.noContent().build();
+    }
+
 }
